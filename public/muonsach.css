@@ -1,0 +1,33 @@
+.muonsach-content{
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+		background-color: #ddd;
+}
+.muonsach-phan1{
+	width: 40%;
+	padding: 20px;
+}
+.muonsach1{
+	background-color: #f8f9fa;
+	height: 80%;
+	padding: 10px;
+}
+.display-content{
+	width: 100%;
+	height: 400px;
+	background-color: #69c4d24d;
+}
+.muonsach-phan2{
+	width: 60%;
+	padding: 20px;
+}
+.muonsach2{
+	background-color: #f8f9fa;
+	height: 80%;
+	padding: 20px;
+}
+.table-content2{
+	height: 60%;
+	overflow-y: scroll;
+}

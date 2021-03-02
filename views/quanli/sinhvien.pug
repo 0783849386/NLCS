@@ -1,0 +1,38 @@
+extends ./quanli_nav
+block content
+	div.sinhvien-content
+		div.sinhvien-phan1
+			div.sinhvien-content1.p-2
+				h2 Danh sách thành viên
+				input(type='text' placeholder='Tìm kiếm theo tên sách')
+				div
+					table.table.table-bordered
+						tr
+							th STT
+							th Mssv
+							th Tên thành viên
+							th Email
+							th Chỉnh sửa
+						- var i = 1
+						if sinhvien
+							each sv in sinhvien
+								tr
+									td= i++
+									td= sv.mssv
+									td= sv.hoten
+									td= sv.email
+									td
+										button.btn(id='editSinhVien' data-mssv= sv.mssv data-hoten = sv.hoten data-email = sv.email) edit
+			div(class='modal')
+				form(class='modal-content animate' action='../quanli/updateSinhVien' method='post')
+					div(class='container')
+						input(id = 'mssv' style="display: none" name='mssv')
+						label(for='hoten')  Họ tên
+						input(type='text' id='hoten' placeholder="Nhập vào họ tên" name='hoten')
+
+						label(for='email') Email
+						input(type='email' id='email' placeholder='Nhập vào email' name='email')
+
+						input.btn.btn-info(type='submit', name='submit', value='Thêm vào')
+		script
+			include ../code/quanli.sinhvien.js				

@@ -1,0 +1,16 @@
+html
+	head
+		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
+		link(rel="stylesheet", href="../home_sv.css")
+		link(rel="stylesheet", href="../common.css")
+		link(rel="stylesheet", href="../sach_sv.css")
+		script(src="https://unpkg.com/axios/dist/axios.min.js")
+	body
+		div.common-header
+			div.common-phan1
+				h2 Thư viện sách
+			div.common-phan2
+				if username
+					div= username
+				a(href='../auth/login' class="logout") Logout
+		block header

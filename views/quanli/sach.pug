@@ -1,0 +1,69 @@
+extends ./quanli_nav
+block content
+	div.sach-content
+		div.sach-phan1
+			div.sach-content1.p-2
+				h2 Danh mục sách
+				input(type='text' placeholder='Tìm kiếm theo tên sách')
+				div
+					table.table.table-bordered
+						tr
+							th STT
+							th Tên sách
+							th Tác giả
+							th Số lượng
+							th Chỉnh sửa
+						- var i = 1
+						if danhmucsach
+							each dms in danhmucsach
+								tr
+									td= i++
+									td= dms.tensach
+									td= dms.tacgia
+									td= dms.soluong
+									td
+										button.btn#editSach(data-idsach = dms.idsach data-tensach = dms.tensach data-tacgia = dms.tacgia data-soluong = dms.soluong) edit
+			div(class='modal')
+				form(class='modal-content animate' action='../sach/updateSach' method='post')
+					div(class='container')
+						input(id = 'idsachUp' style="display: none" name='idsachUp')
+						label(for='tensachUpUp') Tên sách 
+						input(type='text' id='tensachUp' placeholder="Nhập vào tên sách" name='tensachUp')
+
+						label(for='tacgiaUp') Tác giả 
+						input(type='text' id='tacgiaUp' placeholder='Nhập vào tác giả' name='tacgiaUp')
+
+						label(for='soluongUp') Số lượng 
+						input(type='number' id='soluongUp' placeholder='Nhập vào số lượng' name='soluongUp')
+						input.btn.btn-info(type='submit', name='submit1', value='Thêm vào')
+
+		div.sach-phan2
+			div.sach-content2
+				form(id="login-form" class="form" action="../sach/show" method="post")
+					h3.text-center.text-info Tạo thông tin sách
+					br
+					div.form-group
+						label.text-info(for='tensach') Tên sách:
+						br
+						if errTenSach
+							each err in errTenSach
+								.alert.alert-danger= err
+						input#tensach.form-control(type='text', name='tensach' value=values ? values.tensach : '')
+					div.form-group
+						label.text-info(for='tacgia') Tác giả:
+						br
+						if errTacGia
+							each err in errTacGia
+								.alert.alert-danger= err
+						input#tacgia.form-control(type='text', name='tacgia' value=values ? values.tacgia : '')
+					div.form-group
+						label.text-info(for='soluong') Số lượng:
+						br
+						if errSoLuong
+							each err in errSoLuong
+								.alert.alert-danger= err
+						input#soluong.form-control(type='number', name='soluong' value=values ? values.soluong : '')
+					input.btn.btn-info.btn-md(type='submit', name='submit', value='Thêm vào')
+
+	script
+		include ../code/quanli.danhmucsach.js				

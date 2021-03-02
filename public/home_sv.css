@@ -1,0 +1,39 @@
+.home-content {
+	display: flex;
+	flex-direction: row;
+	background-color: #eee;
+	height: 100%;
+}
+.home-phan1 {
+	padding: 20px;
+	width: 60%;
+
+}
+.home-phan2 {
+	padding: 20px;
+	width: 40%;
+
+}
+.home-content1 {
+	height: 100%;
+	
+}
+.home-content2 {
+	background-color: #fff;
+	height: 100%;
+	padding: 30px;
+	padding-top: 50px;
+}
+.content-phan1 {
+	background-color: #fff;
+	height: 90%;
+}
+.content-phan2 {
+	background-color: #fff;
+	height: 90%;
+}
+.display-thongtin {
+	background-color: #a4e2e7;
+	height: 70%;
+	overflow-y: scroll;
+}

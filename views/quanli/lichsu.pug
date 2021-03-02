@@ -1,0 +1,41 @@
+extends ./quanli_nav
+block content
+	div.sinhvien-content
+		div.sinhvien-phan1
+			div.sinhvien-content1.p-2
+				h2 Danh sách thành viên
+				input(type='text' placeholder='Tìm kiếm theo tên sách')
+				div.lichsu-quanli
+					table.table.table-bordered
+						tr
+							th Thời gian
+							th Mssv
+							th Họ tên
+							th Email
+							th Tên sách
+							th Tác giả
+							th Hoạt động
+						- var i = 1
+						if lichsu
+							each ls in lichsu
+								tr
+									td
+										span= ls.ngay.getFullYear()
+										span -
+										span= ls.ngay.getMonth()
+										span -
+										span= ls.ngay.getDate()
+										span  
+										span= ls.ngay.getHours()
+										span -
+										span= ls.ngay.getMinutes()
+										span -
+										span= ls.ngay.getSeconds()
+									td= ls.mssv
+									td= ls.hoten
+									td= ls.email
+									td= ls.tensach
+									td= ls.tacgia
+									td= ls.hoatdong
+		script
+			include ../code/quanli.lichsu.js				

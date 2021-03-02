@@ -1,0 +1,60 @@
+extends ./sinhvien_nav
+block content
+	div.home-content
+		div.home-phan1
+			div.content-phan1
+				h3 Giới thiệu thư viện
+		div.home-phan2
+			div.content-phan2
+				h2 Thông tin các nhân
+				hr
+				br
+				div
+					button.btn#sachmuon Sách đang mượn
+					button.btn#lichsu Lịch sử
+					br
+					br
+					div.display-thongtin
+						div#display-sachmuon
+							table.table.table-bordered
+								tr
+									th STT
+									th Tên sách
+									th Tác giả
+								- var i = 1
+								if danhsach
+									each ds in danhsach
+										tr
+											td= i++
+											td= ds.tensach
+											td= ds.tacgia
+						div#display-lichsu
+							table.table.table-bordered
+								tr
+									th Ngày
+									th Hoạt động
+									th Tên sách
+									th Tác giả
+								-var i = 1
+								if lichsu
+									each ls in lichsu
+										tr
+											td
+												span= ls.ngay.getFullYear()
+												span -
+												span= ls.ngay.getMonth()
+												span -
+												span= ls.ngay.getDate()
+												span  
+												span= ls.ngay.getHours()
+												span -
+												span= ls.ngay.getMinutes()
+												span -
+												span= ls.ngay.getSeconds()
+											td= ls.hoatdong
+											td= ls.tensach
+											td= ls.tacgia
+									
+	
+	script
+		include ../code/sinhvien.home.js

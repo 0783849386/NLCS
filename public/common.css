@@ -1,0 +1,19 @@
+.common-header{
+	height: 10%;
+	background-color: #17a2b8;
+	border-bottom: 1px solid black;
+	display: flex;
+	flex-direction: row;
+}
+.common-phan1{
+	width: 90%;
+}
+.common-phan2{
+	padding-top: 30px;
+	display: flex;
+	flex-direction: row;
+}
+.logout {
+	padding-left: 5px; 
+	color: #eee;
+}

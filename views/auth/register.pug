@@ -1,0 +1,39 @@
+html
+	head
+		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
+		link(rel="stylesheet", href="../login.css")
+		script(src="https://unpkg.com/axios/dist/axios.min.js")
+	body
+		div.register-header
+			h2 Thư viện sách
+			a(href='./login' class="logout") Login
+		div.login-content
+			div.login-phan1 
+				div Niên luận cơ sở
+				div Vi Van Dat
+			div.login-phan2
+				if results
+					script
+						include ../code/register.js
+				form(class="form" action="/auth/register" method="post")
+					h3.text-center.text-info Đăng ký
+					br
+					if errors
+						.alert.alert-danger= errors
+					div.form-group
+						label.text-info(for='mssv') Mssv:
+						br
+						input#mssv.form-control(type='text', name='mssv' value=values ? values.mssv : '')
+					div.form-group
+						label.text-info(for='hoten') Hoten:
+						br
+						input#hoten.form-control(type='text', name='hoten' value=values ? values.hoten : '')
+					div.form-group
+						label.text-info(for='username') Email:
+						br
+						input#username.form-control(type='email', name='email' value=values ? values.email : '')
+					div.form-group
+						label.text-info(for='password') Password:
+						br
+						input#password.form-control(type='password', name='pass' value=values ? values.pass : '')
+					input.btn.btn-info.btn-md(type='submit', name='submit', value='Đăng ký')

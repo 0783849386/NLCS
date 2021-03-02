@@ -1,0 +1,74 @@
+extends ./quanli_nav
+block content
+	div.muonsach-content
+		div.muonsach-phan1
+			div.muonsach1
+				h2 Thông tin phiếu mượn
+				div.text-right
+					button.p-1.m-1.btn#btn-sv Nhập thông tin sinh viên
+					button.p-1.m-1.btn#btn-s Danh sách mượn
+				div.display-content
+					div#muonsach1
+						input( id='thongtin-mssv' placeholder="Nhập vào mssv")
+						input.m-2(type='button' id='thongtin' value='Thông tin')
+						br
+						if sinhvien
+							div(id='display-mssv')= sinhvien.mssv
+							div= sinhvien.hoten
+							div= sinhvien.email
+						if sv_length == 0
+							.alert.alert-danger Không tồn tại sinh viên này
+					div#muonsach2
+						table.table.table-bordered
+							tr
+								th STT
+								th Tên sách
+								th Tác giả
+								th Xóa
+						table.table.table-bordered
+							- var i = 1;
+							if phieumuon
+								each pm in phieumuon
+									tr
+										td= i++
+										td= pm.tensach
+										td= pm.tacgia
+										td
+											button.btn(id='phieumuon' data-idgiohang= pm.idgiohang) Xóa
+							- for( var x = i ; x<=5 ; x++)
+								tr
+									td= x
+									td
+									td
+									td
+		
+				br
+				button.btn.btn-info#xacnhan Xác nhận
+		div.muonsach-phan2
+			div.muonsach2
+				h2 Danh mục sách
+				input#timkiem-content(type='text' placeholder='Tìm kiếm theo tên sách')
+				button.m-2.btn-info#btn-timkiem Tìm kiếm
+				br
+				br
+				div.table-content2
+					table.table.table-bordere
+						tr
+							th STT
+							th Tên sách
+							th Tác giả
+							th Số lượng
+							th Mượn sách
+						- var i = 1
+						if danhmucsach
+							each dms in danhmucsach
+								tr
+									td= i++
+									td= dms.tensach
+									td= dms.tacgia
+									td= dms.soluong
+									td
+										button.btn(id='add' data-idsach= dms.idsach) Thêm
+
+	script
+		include ../code/quanli.muonsach.js				

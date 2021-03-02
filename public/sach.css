@@ -1,0 +1,25 @@
+.sach-content {
+	display: flex;
+	flex-direction: row;
+	background-color: #eee;
+	height: 90%;
+}
+.sach-phan1 {
+	padding: 20px;
+	width: 70%;
+}
+.sach-phan2 {
+	padding: 20px;
+	width: 30%;
+
+}
+.sach-content1 {
+	background-color: #fff;
+	height: 90%;
+}
+.sach-content2 {
+	background-color: #fff;
+	height: 90%;
+	padding: 30px;
+	padding-top: 50px;
+}
