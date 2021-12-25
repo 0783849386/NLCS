@@ -1,31 +1,64 @@
 html
 	head
+		<meta charset="utf-8">
+		<title>Đăng nhập</title>
 		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
 		link(rel="stylesheet", href="../login.css")
-		script(src="https://unpkg.com/axios/dist/axios.min.js")
+		<link href='https://css.gg/profile.css' rel='stylesheet'>
+		<link href='https://css.gg/google.css' rel='stylesheet'>
+		<link href='https://css.gg/keyhole.css' rel='stylesheet'>
+		script
+			include ../code/map.js
 	body
 		div.login-header
-			h2 Thư viện sách
+			.header-img
+				img(src='../img/library.jpg' style="height:120px")
+			
 		div.login-content
-			div.login-phan1 
-				div Niên luận cơ sở
-				div Vi Van Dat
+			div.login-phan1
+				#slider
+					input#slide1(type='radio', name='slider', checked)
+					input#slide2(type='radio', name='slider')
+					#slides
+						#overflow
+							.inner
+								.slide.slide_1
+								.slide.slide_2
+					#controls
+						label(for='slide1')
+						label(for='slide2')
 			div.login-phan2
+				br
+				br
 				form(class="form" action="" method="post")
 					h3.text-center.text-info Đăng nhập
-					br
 					br
 					if errors
 							each err in errors
 								.alert.alert-danger= err
 					div.form-group
-						label.text-info(for='username') Username:
+						label.text-info(for='username') Email:
 						br
-						input#username.form-control(type='email', name='email' value=values ? values.email : '')
+						table.m-2
+							tr.border.p-2
+								td.p-2
+									<i class="gg-google" style="color: #777"></i>
+								td
+									input#username.form-control(type='email', name='email' value=values ? values.email : '')
 					div.form-group
-						label.text-info(for='password') Password:
+						label.text-info(for='password') Mật khẩu:
 						br
-						input#password.form-control(type='password', name='pass' value=values ? values.pass : '')
-					input.btn.btn-info.btn-md(type='submit', name='submit', value='Đăng nhập')
+						table.m-2
+							tr.border.p-2
+								td.p-2
+									<i class="gg-keyhole" style="color: #777"></i>
+								td
+									input#password.form-control(type='password', name='pass' value=values ? values.pass : '')
+					input.btn.btn-info.btn-md.m-2(type='submit', name='submit', value='Đăng nhập')
 					div#register-link.text-right
-						a.text-info(href='/auth/register') Register here
+						a.text-info(href='/auth/register') Tạo tài khoản
+		div.footer-login
+			
+			hr
+			marquee.lienhe Liên hệ: 
+				i Khoa công nghệ thông tin và truyền thông

@@ -1,60 +1,85 @@
 extends ./sinhvien_nav
 block content
-	div.home-content
-		div.home-phan1
-			div.content-phan1
-				h3 Giới thiệu thư viện
-		div.home-phan2
-			div.content-phan2
-				h2 Thông tin các nhân
-				hr
-				br
-				div
-					button.btn#sachmuon Sách đang mượn
-					button.btn#lichsu Lịch sử
+	.content-footer-home
+		div.home-content
+			div.home-phan1
+				div.content-phan1
+					<!--h3 I. Giới thiệu
+						p - Thư viện sách giúp các bạn đọc tra cứu thông tin các loại sách đang có ở trong thư viện.
+						p - Tìm kiếm thông minh không cần phải đến trực tiếp thư viện.
+						p - Có thể đăng ký mượn trực tiếp, dùng mã số thành viên để đến nhận sách.
+					h3 II. Quy định
+						<p>
+						p - Bạn cần phải có tài khoản thành viên hợp lệ. Có thể đăng ký trực tuyến hoặc đến thư viện để đăng ký.
+						p - Mỗi lần mượn tối đa 5 quyển sách và phải trả trong vòng 1 tháng.
+						p - Có thể tiếp tục mượn thểm sách mới để đọc.
+						</p>-->
+						h3 Thông báo
+						img(src='../img/empty.svg' width='600px')
+			div.home-phan2
+				div.content-phan2
+					h2 Thông tin các nhân
 					br
-					br
-					div.display-thongtin
-						div#display-sachmuon
-							table.table.table-bordered
-								tr
-									th STT
-									th Tên sách
-									th Tác giả
-								- var i = 1
-								if danhsach
-									each ds in danhsach
-										tr
-											td= i++
-											td= ds.tensach
-											td= ds.tacgia
-						div#display-lichsu
-							table.table.table-bordered
-								tr
-									th Ngày
-									th Hoạt động
-									th Tên sách
-									th Tác giả
-								-var i = 1
-								if lichsu
-									each ls in lichsu
-										tr
-											td
-												span= ls.ngay.getFullYear()
-												span -
-												span= ls.ngay.getMonth()
-												span -
-												span= ls.ngay.getDate()
-												span  
-												span= ls.ngay.getHours()
-												span -
-												span= ls.ngay.getMinutes()
-												span -
-												span= ls.ngay.getSeconds()
-											td= ls.hoatdong
-											td= ls.tensach
-											td= ls.tacgia
-									
-	
+					if 	username
+						table.table-bordered.table
+							tr
+								td Mã số sinh viên
+								th= username.mssv
+							tr
+								td Họ tên
+								th= username.hoten
+							tr
+								td Email
+								th= username.email
+					div
+						button.btn#sachmuon Sách đang mượn
+						button.btn#lichsu Lịch sử
+						br
+						br
+						div.display-thongtin
+							div#display-sachmuon
+								table.table.table-bordered
+									tr
+										th STT
+										th Tên sách
+										th Tác giả
+									- var i = 1
+									if danhsach
+										each ds in danhsach
+											tr
+												td= i++
+												td= ds.tensach
+												td= ds.tacgia
+							div#display-lichsu
+								table.table.table-bordered
+									tr
+										th Thời gian
+										th Hoạt động
+										th Tên sách
+										th Tác giả
+									-var i = 1
+									if lichsu
+										each ls in lichsu
+											tr.scroll-lichsu
+												td
+													span= ls.ngay.getDate()
+													span -
+													span= ls.ngay.getMonth()
+													span -
+													span= ls.ngay.getFullYear()
+													span  
+													span= ls.ngay.getHours()
+													span :
+													span= ls.ngay.getMinutes()
+													span :
+													span= ls.ngay.getSeconds()
+												td= ls.hoatdong
+												td= ls.tensach
+												td= ls.tacgia
+										
+		.footer-lienhe
+			div Trường Đại học Cần Thơ (Can Tho University)
+			div Khu II, đường 3/2, P. Xuân Khánh, Q. Ninh Kiều, TP. Cần Thơ.
+			div Điện thoại: (84-292) 3832663 - (84-292) 3838474; Fax: (84-292) 3838474; Email: dhct@ctu.edu.vn.
 	script
 		include ../code/sinhvien.home.js

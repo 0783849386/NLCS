@@ -1,18 +1,23 @@
-.sinhvien-content{
-	display: flex;
-	flex-direction: row;
-	height: 100%;
-	background-color: #ddd;
-	padding: 20px;
-	padding-left: 100px;
-	padding-right: 100px;
-}
-.sinhvien-phan1{
-	width: 100%;
-	padding: 20px;
-	background-color: #fff;
-}
-.content-phan1 {
-	height: 80%;
-	padding: 10px;
+@media screen and (min-width: 960px) {
+
+	.sinhvien-content{
+		display: flex;
+		flex-direction: row;
+		height: 100%;
+		background-color: #eee;
+		padding: 15px;
+	}
+	.sinhvien-phan1{
+		width: 100%;
+		padding: 20px;
+		background-color: #fff;
+	}
+	.content-phan1 {
+		height: 90%;
+		padding: 10px;
+	}
+	.table-content {
+		height: 80%;
+		overflow-y: scroll; 
+	}
 }

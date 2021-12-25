@@ -1,11 +1,13 @@
 extends ./common
 block header
-	nav.navbar.navbar-expand-lg.navbar-light.bg-light
-		a.navbar-brand(href='/sinhvien/home') Trang chủ
-		#navbarNav.collapse.navbar-collapse
-			ul.navbar-nav
-				li.nav-item
-					a.nav-link(href='/sinhvien/sach') Danh mục sách
-				li.nav-item
-					a.nav-link(href='#') Giới thiệu
+	.nav-menu
+		ul
+			li#nav-home
+				a.nav-link(href='/sinhvien/home') Trang chủ
+			li#nav-sach
+				a.nav-link(href='/sinhvien/sach') Danh mục sách
+			li#nav-trogiup
+				a.nav-link(href='/trogiup/thutuc') Trợ giúp
+			li#nav-lienhe
+				a.nav-link(href='/sinhvien/lienhe') Liên Hệ
 	block content

@@ -8,13 +8,16 @@ html
 		link(rel="stylesheet", href="../sinhvien.css")
 		link(rel="stylesheet", href="../display.css")
 		link(rel="stylesheet", href="../lichsu.css")
+		<link href='https://css.gg/log-out.css' rel='stylesheet'>
 		script(src="https://unpkg.com/axios/dist/axios.min.js")
 	body
 		div.common-header
 			div.common-phan1
-				h2 Thư viện sách
+				.header-img
+					img(src='../img/library.jpg' style="height:120px")
 			div.common-phan2
 				if username
 					div= username
-				a(href='../auth/login' class="logout") Logout
+				a(href='../auth/login' class="logout")
+					<i class="gg-log-out"></i>
 		block header

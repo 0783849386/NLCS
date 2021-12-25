@@ -4,14 +4,17 @@ block content
 		div.sach-phan1
 			div.sach-content1.p-2
 				h2 Danh mục sách
-				input(type='text' placeholder='Tìm kiếm theo tên sách')
-				div
+				form(action='../sach/timkiemSach' method='post')
+					input(type='text' placeholder='Tìm kiếm theo tên sách' name='timkiem')
+				div.table-content1
 					table.table.table-bordered
 						tr
 							th STT
 							th Tên sách
 							th Tác giả
+							th Hình ảnh
 							th Số lượng
+							th Đang mượn
 							th Chỉnh sửa
 						- var i = 1
 						if danhmucsach
@@ -20,50 +23,66 @@ block content
 									td= i++
 									td= dms.tensach
 									td= dms.tacgia
-									td= dms.soluong
 									td
-										button.btn#editSach(data-idsach = dms.idsach data-tensach = dms.tensach data-tacgia = dms.tacgia data-soluong = dms.soluong) edit
+										div(class='modalImg')
+											div.modal-content-img.container.animate
+												if dms.hinhanh
+													img(src='../sachImg/'+dms.hinhanh width="400" height='590px')
+										button#xemImg.btn.link(data-stt = i) Xem
+									td= dms.soluong
+									td= dms.soluongMuon
+									td
+										button.btn#editSach(data-idsach = dms.idsach data-tensach = dms.tensach data-tacgia = dms.tacgia data-soluong = dms.soluong) Sửa
 			div(class='modal')
-				form(class='modal-content animate' action='../sach/updateSach' method='post')
+				form(class='modal-content animate' action='../sach/updateSach'  method='post' enctype="multipart/form-data")
 					div(class='container')
 						input(id = 'idsachUp' style="display: none" name='idsachUp')
 						label(for='tensachUpUp') Tên sách 
-						input(type='text' id='tensachUp' placeholder="Nhập vào tên sách" name='tensachUp')
+						input(type='text' id='tensachUp' placeholder="Nhập vào tên sách" name='tensachUp' required)
 
 						label(for='tacgiaUp') Tác giả 
-						input(type='text' id='tacgiaUp' placeholder='Nhập vào tác giả' name='tacgiaUp')
+						input(type='text' id='tacgiaUp' placeholder='Nhập vào tác giả' name='tacgiaUp' required)
 
-						label(for='soluongUp') Số lượng 
-						input(type='number' id='soluongUp' placeholder='Nhập vào số lượng' name='soluongUp')
-						input.btn.btn-info(type='submit', name='submit1', value='Thêm vào')
+						label(for='soluongUp') Số lượng
+						input(type='number' id='soluongUp' placeholder='Nhập vào số lượng' name='soluongUp' required)
+						br
+						label(for='hinhanhUp') Hình ảnh:
+						br
+						input(type='file' id='hinhanhUp' name='hinhanhUp')
+						br
+						br
+						input.btn.btn-info(type='submit', name='submit1', value='Lưu lại')
 
 		div.sach-phan2
 			div.sach-content2
-				form(id="login-form" class="form" action="../sach/show" method="post")
+				form(id="login-form" class="form" action="../sach/show" method="post" enctype="multipart/form-data")
 					h3.text-center.text-info Tạo thông tin sách
 					br
 					div.form-group
 						label.text-info(for='tensach') Tên sách:
 						br
-						if errTenSach
-							each err in errTenSach
-								.alert.alert-danger= err
-						input#tensach.form-control(type='text', name='tensach' value=values ? values.tensach : '')
+						input#tensach.form-control(type='text', name='tensach' value=values ? values.tensach : '' required)
 					div.form-group
 						label.text-info(for='tacgia') Tác giả:
 						br
 						if errTacGia
 							each err in errTacGia
 								.alert.alert-danger= err
-						input#tacgia.form-control(type='text', name='tacgia' value=values ? values.tacgia : '')
+						input#tacgia.form-control(type='text', name='tacgia' value=values ? values.tacgia : '' required)
 					div.form-group
 						label.text-info(for='soluong') Số lượng:
 						br
 						if errSoLuong
 							each err in errSoLuong
 								.alert.alert-danger= err
-						input#soluong.form-control(type='number', name='soluong' value=values ? values.soluong : '')
+						input#soluong.form-control(type='number', name='soluong' value=values ? values.soluong : '' required)
+					div.form-group
+						label.text-info(for='hinhanh') Hình ảnh:
+						br
+						if errSoLuong
+							each err in errSoLuong
+								.alert.alert-danger= err
+						input#hinhanh.form-control(type='file', name='hinhanh' )
 					input.btn.btn-info.btn-md(type='submit', name='submit', value='Thêm vào')
-
 	script
-		include ../code/quanli.danhmucsach.js				
+		include ../code/quanli.danhmucsach.js

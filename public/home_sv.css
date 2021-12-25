@@ -1,39 +1,58 @@
-.home-content {
-	display: flex;
-	flex-direction: row;
-	background-color: #eee;
-	height: 100%;
-}
-.home-phan1 {
-	padding: 20px;
-	width: 60%;
+@media screen and (min-width: 960px) {
+	.content-footer-home{
+		background-color: #eee;
+		height: 110%;
+	}
+	.home-content {
+		display: flex;
+		flex-direction: row;
+		background-color: #eee;
+		height: 90%;
+	}
+	.home-phan1 {
+		padding-top: 15px;
+		padding-left: 15px;
+		padding-bottom: 15px;
+		width: 60%;
+
+	}
+	.home-phan2 {
+		padding: 15px;
+		width: 40%;
+
+	}
+	.home-content1 {
+		height: 100%;
+	}
+	.home-content2 {
+		background-color: #fff;
+		height: 100%;
+		padding-top: 50px;
+	}
+	.content-phan1 {
+		background-color: #fff;
+		height: 100%;
+		padding: 5px;
+	}
+	.content-phan2 {
+		background-color: #fff;
+		height: 100%;
+		padding: 5px;
+	}
+	.display-thongtin {
+		background-color: #a4e2e7;
+		height: 58%;
+		overflow-y: scroll; 
+	}
+	.scroll-lichsu{
+		overflow-y: scroll; 
+	}
 
 }
-.home-phan2 {
-	padding: 20px;
-	width: 40%;
-
-}
-.home-content1 {
-	height: 100%;
-	
-}
-.home-content2 {
-	background-color: #fff;
-	height: 100%;
-	padding: 30px;
-	padding-top: 50px;
-}
-.content-phan1 {
-	background-color: #fff;
-	height: 90%;
-}
-.content-phan2 {
-	background-color: #fff;
-	height: 90%;
-}
-.display-thongtin {
-	background-color: #a4e2e7;
-	height: 70%;
-	overflow-y: scroll;
+/* On screens that are 600px wide or less, the background color is olive */
+@media screen and (max-width: 600px) {
+  body {
+    background-color: olive;
+    color: white;
+  }
 }

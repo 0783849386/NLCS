@@ -2,92 +2,76 @@ extends ./quanli_nav
 block content
 	div.home-content
 		div.home-phan1
-			h3 Duyệt thông tin
-			button.p-1.m-1#btn-home1 Danh sách xác nhận
-			button.p-1.m-1#btn-home2 Thành viên đang mượn sách
-			div.display-content-home
-				div#contentHome1
-					div.home1-content
-						table.table.table-bordered
-							tr
-								th STT
-								th MSSV
-								th Họ tên
-								th Email
-								th Chi tiết
-								th Đồng ý
-							- var i = 1;
-							if danhsachduyet
-								each ds in danhsachduyet
-									tr
-										td= i++
-										td= ds.mssv
-										td= ds.hoten
-										td= ds.email
-										td
-											button.btn#chitietgiohang(data-id = i) Chi Tiết
-										td
-											button.btn(data-mssv = ds.mssv id= 'duyetmuonsach') Duyệt
-				- var i = 1;
-				if danhsachduyet
-					each ds in danhsachduyet	
-						div(class='modal')
-							div(class='container')
-								div(class="modal-content animate")
-									table.table.table-bordered
+			.content-phan1
+				h3 Duyệt thông tin
+				button.p-1.m-1#btn-home1 Danh sách xác nhận
+				button.p-1.m-1#btn-home2 Thành viên đang mượn sách
+				div.display-content-home
+					div#contentHome1
+						div.home1-content
+							table.table.table-bordered
+								tr
+									th STT
+									th MSSV
+									th Họ tên
+									th Email
+									th Chi tiết
+									th Đồng ý
+								- var i = 1;
+								if danhsachduyet
+									each ds in danhsachduyet
 										tr
-											th STT
-											th Tên sách
-											th Tác giả
-										- var x = 1
-										each gh in chitiet_giohang
-											if ds.mssv == gh.mssv
-												tr
-													td= x++
-													td= gh.tensach
-													td= gh.tacgia									
-				div#contentHome2(style="display: none")
-					div.home2-content
-						table.table.table-bordered
-							tr
-								th STT
-								th MSSV
-								th Họ tên
-								th Email
-								th Nhận sách
-							-var i = 1;
-							if thanhvienmuonsach
-								each tv in thanhvienmuonsach
-									tr
-										td= i++
-										td= tv.mssv
-										td= tv.hoten
-										td= tv.email
-										td
-											button.btn#chitietmuonsach(data-id = i) Chi tiết
-				- var i = 1;
-				if thanhvienmuonsach
-					each tv in thanhvienmuonsach	
-						div(id = i++  class='modal2')
-							div(class='container')
-								div(class="modal-content animate")
-									table.table.table-bordered
+											td= i++
+											td= ds.mssv
+											td= ds.hoten
+											td= ds.email
+											td
+												button.btn#chitietgiohang(data-id = i) Chi Tiết
+											td
+												button.btn(data-mssv = ds.mssv id= 'duyetmuonsach') Duyệt
+					- var i = 1;
+					if danhsachduyet
+						each ds in danhsachduyet	
+							div(class='modal')
+								div(class='container')
+									div(class="modal-content animate")
+										table.table.table-bordered
+											tr
+												th STT
+												th Tên sách
+												th Tác giả
+											- var x = 1
+											each gh in chitiet_giohang
+												if ds.mssv == gh.mssv
+													tr
+														td= x++
+														td= gh.tensach
+														td= gh.tacgia									
+					div#contentHome2(style="display: none")
+						div.home2-content
+							table.table.table-bordered
+								tr
+									th STT
+									th MSSV
+									th Họ tên
+									th Email
+									th Nhận sách
+								-var i = 1;
+								if thanhvienmuonsach
+									each tv in thanhvienmuonsach
 										tr
-											th STT
-											th Tên sách
-											th Tác giả
-											th Nhận sách
-										- var x = 1
-										each ms in chitiet_muonsach
-											if tv.mssv == ms.mssv
-												tr(id = x)
-													td= x++
-													td= ms.tensach
-													td= ms.tacgia
-													td= ms.ngaymuon
-													td
-														button.btn(id= 'btn-nhan' data-idmuon = ms.idmuon data-stt = x) Nhận
-
-
+											td= i++
+											td= tv.mssv
+											td= tv.hoten
+											td= tv.email
+											td
+												button.btn#chitietmuonsach(data-mssv = tv.mssv) Chi tiết
+					div(class='modal2')
+						div(class="modal-content animate")
+							div(class='container')
+								div(id='chitiet-muon')
+		div.home-phan2
+			img(src='../img/empty.svg')
+			div(style='text-align: bottom') Chưa có sự kiện nào
 	script
 		include ../code/quanli.home.js

@@ -7,7 +7,7 @@ input[type=text], input[type=password], input[type=number], input[type=email] {
   box-sizing: border-box;
 }
 /* The Modal (background) */
-.modal , .modal2 {
+.modal , .modal2 , .modalImg{
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -26,9 +26,16 @@ input[type=text], input[type=password], input[type=number], input[type=email] {
   background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 60%; /* Could be more or less, depending on screen size */
+  width: 60%; /* Could be more or less, depending on screen size */ 
 }
-
+.modal-content-img {
+  background-color: #fff;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 445px; /* Could be more or less, depending on screen size */
+  padding-top: 10px;
+  height: 610px;
+}
 /* The Close Button (x) */
 .close {
   position: absolute;

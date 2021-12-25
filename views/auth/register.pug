@@ -1,31 +1,44 @@
 html
 	head
+		<meta charset="utf-8">
+		<title>Đăng ký</title>
 		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
 		link(rel="stylesheet", href="../login.css")
-		script(src="https://unpkg.com/axios/dist/axios.min.js")
+		<link href='https://css.gg/profile.css' rel='stylesheet'>
+		<link href='https://css.gg/google.css' rel='stylesheet'>
 	body
-		div.register-header
-			h2 Thư viện sách
-			a(href='./login' class="logout") Login
+		div.login-header
+			.header-img
+				img(src='../img/library.jpg' style="height:120px")
+			a.p-2(href='./login' class="logout") Đăng nhập
+			<i class="gg-profile" style="color: #195086"></i>
 		div.login-content
-			div.login-phan1 
-				div Niên luận cơ sở
-				div Vi Van Dat
+			div.login-phan1
+				#slider
+					input#slide1(type='radio', name='slider', checked)
+					input#slide2(type='radio', name='slider')
+					#slides
+						#overflow
+							.inner
+								.slide.slide_1
+								.slide.slide_2
+					#controls
+						label(for='slide1')
+						label(for='slide2')
 			div.login-phan2
 				if results
 					script
 						include ../code/register.js
 				form(class="form" action="/auth/register" method="post")
 					h3.text-center.text-info Đăng ký
-					br
 					if errors
-						.alert.alert-danger= errors
+						.alert.alert-danger= errors[0]
 					div.form-group
-						label.text-info(for='mssv') Mssv:
+						label.text-info(for='mssv') Mã số sinh viên:
 						br
 						input#mssv.form-control(type='text', name='mssv' value=values ? values.mssv : '')
 					div.form-group
-						label.text-info(for='hoten') Hoten:
+						label.text-info(for='hoten') Họ tên:
 						br
 						input#hoten.form-control(type='text', name='hoten' value=values ? values.hoten : '')
 					div.form-group
@@ -33,7 +46,10 @@ html
 						br
 						input#username.form-control(type='email', name='email' value=values ? values.email : '')
 					div.form-group
-						label.text-info(for='password') Password:
+						label.text-info(for='password') Mật khẩu:
 						br
 						input#password.form-control(type='password', name='pass' value=values ? values.pass : '')
 					input.btn.btn-info.btn-md(type='submit', name='submit', value='Đăng ký')
+		div.footer-register
+			marquee.lienhe Liên hệ: 
+				i Khoa công nghệ thông tin và truyền thông

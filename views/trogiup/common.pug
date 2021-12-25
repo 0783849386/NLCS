@@ -1,0 +1,21 @@
+html
+	head
+		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
+		link(rel="stylesheet", href="../home_sv.css")
+		link(rel="stylesheet", href="../common.css")
+		link(rel="stylesheet", href="../sach_sv.css")
+		link(rel="stylesheet", href="../trogiup.css")
+		<link href='https://css.gg/log-out.css' rel='stylesheet'>
+		script(src="https://unpkg.com/axios/dist/axios.min.js")
+	body
+		div.common-header
+			div.common-phan1
+				.header-img
+					img(src='../img/library.jpg' style="height:120px")
+				
+			div.common-phan2
+				if username
+					div= username.hoten
+				a(href='../auth/login' class="logout")
+					<i class="gg-log-out"></i>
+		block header

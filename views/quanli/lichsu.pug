@@ -3,8 +3,9 @@ block content
 	div.sinhvien-content
 		div.sinhvien-phan1
 			div.sinhvien-content1.p-2
-				h2 Danh sách thành viên
-				input(type='text' placeholder='Tìm kiếm theo tên sách')
+				h2 Lịch sử mượn trả sách
+				form(action="" method='post')
+					input(type='text' placeholder='Tìm kiếm theo mssv' name='timkiem')
 				div.lichsu-quanli
 					table.table.table-bordered
 						tr
@@ -18,18 +19,18 @@ block content
 						- var i = 1
 						if lichsu
 							each ls in lichsu
-								tr
+								tr.noidung-lichsu(data-idsach = ls.idsach data-mssv= ls.mssv data-hoatdong = ls.hoatdong)
 									td
-										span= ls.ngay.getFullYear()
-										span -
-										span= ls.ngay.getMonth()
-										span -
 										span= ls.ngay.getDate()
+										span /
+										span= ls.ngay.getMonth()+1
+										span /
+										span= ls.ngay.getFullYear()
 										span  
 										span= ls.ngay.getHours()
-										span -
+										span :
 										span= ls.ngay.getMinutes()
-										span -
+										span :
 										span= ls.ngay.getSeconds()
 									td= ls.mssv
 									td= ls.hoten

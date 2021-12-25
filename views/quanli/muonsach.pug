@@ -13,34 +13,21 @@ block content
 						input.m-2(type='button' id='thongtin' value='Thông tin')
 						br
 						if sinhvien
-							div(id='display-mssv')= sinhvien.mssv
-							div= sinhvien.hoten
-							div= sinhvien.email
+								h3 Thông tin sinh viên
+								table.table
+									tr
+										th Mã số sinh viên
+										td(id='display-mssv')= sinhvien.mssv
+									tr
+										th Họ tên
+										td= sinhvien.hoten
+									tr
+										th Email
+										td= sinhvien.email
 						if sv_length == 0
 							.alert.alert-danger Không tồn tại sinh viên này
 					div#muonsach2
-						table.table.table-bordered
-							tr
-								th STT
-								th Tên sách
-								th Tác giả
-								th Xóa
-						table.table.table-bordered
-							- var i = 1;
-							if phieumuon
-								each pm in phieumuon
-									tr
-										td= i++
-										td= pm.tensach
-										td= pm.tacgia
-										td
-											button.btn(id='phieumuon' data-idgiohang= pm.idgiohang) Xóa
-							- for( var x = i ; x<=5 ; x++)
-								tr
-									td= x
-									td
-									td
-									td
+						div#table-phieumuon
 		
 				br
 				button.btn.btn-info#xacnhan Xác nhận
@@ -51,7 +38,7 @@ block content
 				button.m-2.btn-info#btn-timkiem Tìm kiếm
 				br
 				br
-				div.table-content2
+				div#table-content2
 					table.table.table-bordere
 						tr
 							th STT
@@ -66,9 +53,8 @@ block content
 									td= i++
 									td= dms.tensach
 									td= dms.tacgia
-									td= dms.soluong
+									td= dms.soluong - dms.soluongMuon
 									td
-										button.btn(id='add' data-idsach= dms.idsach) Thêm
-
+										button.btn(class='add' data-idsach= dms.idsach) Thêm
 	script
 		include ../code/quanli.muonsach.js				

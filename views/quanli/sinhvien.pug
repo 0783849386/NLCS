@@ -4,8 +4,9 @@ block content
 		div.sinhvien-phan1
 			div.sinhvien-content1.p-2
 				h2 Danh sách thành viên
-				input(type='text' placeholder='Tìm kiếm theo tên sách')
-				div
+				form(action = '' method='post')
+					input(type='text' placeholder='Tìm kiếm theo tên sách' name='timkiem')
+				div.table-content
 					table.table.table-bordered
 						tr
 							th STT
@@ -22,7 +23,7 @@ block content
 									td= sv.hoten
 									td= sv.email
 									td
-										button.btn(id='editSinhVien' data-mssv= sv.mssv data-hoten = sv.hoten data-email = sv.email) edit
+										button.btn(id='editSinhVien' data-mssv= sv.mssv data-hoten = sv.hoten data-email = sv.email) Sửa
 			div(class='modal')
 				form(class='modal-content animate' action='../quanli/updateSinhVien' method='post')
 					div(class='container')
@@ -33,6 +34,6 @@ block content
 						label(for='email') Email
 						input(type='email' id='email' placeholder='Nhập vào email' name='email')
 
-						input.btn.btn-info(type='submit', name='submit', value='Thêm vào')
-		script
-			include ../code/quanli.sinhvien.js				
+						input.btn.btn-info(type='submit', name='submit', value='Lưu lại')
+	script
+		include ../code/quanli.sinhvien.js				

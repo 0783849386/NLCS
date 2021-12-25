@@ -1,9 +1,9 @@
-var connection = require('../dbmysql/db.mysql');
+const connection = require('../dbmysql/db.mysql');
+const sinhvienDB = require('../models/sinhvien.model');
 
 module.exports.home = function(req, res){
 	var mssv = req.cookies.mssv;
-	var sql = 'select hoten from sinhvien where mssv  = ?';
-	connection.query(sql, [mssv], function(err, results){
+	sinhvienDB.getSinhVienMssv(req.conn, [mssv], function(err, results){
 		if(err) throw err;
 		var sql_lichsu = 'call lichsusinhvien(?)';
 		connection.query(sql_lichsu, [mssv], function(err1, result_ls){
@@ -12,7 +12,7 @@ module.exports.home = function(req, res){
 			connection.query(sql_danhsach, [mssv], function(err2, result_ds){
 				if(err2) throw err2;
 				res.render('sinhvien/home_sinhvien',{
-					username: results[0].hoten,
+					username: results[0],
 					lichsu: result_ls[0],
 					danhsach: result_ds[0]
 				});
@@ -21,39 +21,67 @@ module.exports.home = function(req, res){
 	});
 	
 }
-
 module.exports.sach = function(req, res){
 	var tensach = req.cookies.tensach || '';
-	var sql = 'select * from danhmucsach where tensach like "%'+tensach+'%"';
-	connection.query(sql, function(err, results){
-		if(err) throw err;
+	sinhvienDB.danhMucSachTenSach(req.conn, [tensach],function(err1, result1){// Danh muc sach
+		if(err1) throw err1;
 		var mssv = req.cookies.mssv;
-		var sql_sv = 'select hoten from sinhvien where mssv  = ?';
-		connection.query(sql_sv, [mssv], function(err, results_sv){
-			if(err) throw err;
-				var sql_pm = 'call phieumuon( ?)';
-				connection.query(sql_pm, [mssv], function(e, row_pm){
-					if(e) throw e;
+		sinhvienDB.getSinhVienMssv(req.conn, [mssv], function(err2, result2){ // Lay ve tai khoan sinh vien hien hanh
+			if(err2) throw err2;
+				sinhvienDB.phieuMuon(req.conn, [mssv], function(err3, result3){
+					if(err3) throw err3;
 					var phieumuon = [];
-					for(var i = 0; i < row_pm[0].length ; i++){
-						phieumuon.push(row_pm[0][i]);
+					for(var i = 0; i < result3[0].length ; i++){
+						phieumuon.push(result3[0][i]);
 					}
-					var sql_ds_duyet = 'select * from danhsachduyet where mssv = ?';
-					connection.query(sql_ds_duyet, [mssv], function(err4, result4){
+					sinhvienDB.getDanhSachDuyetMssv(req.conn, [mssv], function(err4, result4){
 						if(err4) throw err4;
+						sinhvienDB.sachDangMuon(req.conn, function(err5, result5){
+							if(err5) throw err5;
+							// Tao truong so luong sach dang muon cho danh muc sach
+							var danhMucSach = result1;
+							for(var i=0 ; i < danhMucSach.length ; i++){
+								var temp = 0;
+								for(var j=0; j<result5[0].length ; j++){
+									if(danhMucSach[i].idsach == result5[0][j].idsach){
+										danhMucSach[i].soluongMuon = result5[0][j].soluong;
+										temp = 1;
+										
+										break;
+									}
+								}
+								if(temp == 0) {
+									danhMucSach[i].soluongMuon = 0;
+								}
+							}
+
 							res.render('sinhvien/sach', {
-							danhmucsach: results,
-							danhsachduyet: result4.length,
-							phieumuon: phieumuon,
-							pm_length: phieumuon.length,
-							username: results_sv[0].hoten
-						});
+								danhmucsach: danhMucSach,
+								danhsachduyet: result4.length,
+								phieumuon: phieumuon,
+								pm_length: phieumuon.length,
+								username: result2[0]
+							});
+						})
+							
 					});
 					
 				});
 		});
 		
 	});
+}
+
+module.exports.lienhe = function(req, res){
+	//res.sendfile('demo.html');
+	var mssv = req.cookies.mssv;
+	sinhvienDB.getSinhVienMssv(req.conn, [mssv], function(err1, result1){
+		if(err1) throw err1;
+		res.render('sinhvien/lienhe',{
+			username: result1[0]
+		});
+	});
+	
 }
 
 module.exports.timkiem = function(req, res){
@@ -67,8 +95,7 @@ module.exports.timkiem = function(req, res){
 
 module.exports.muonsach = function(req, res){
 	var mssv = req.cookies.mssv;
-	var sql_sv = 'select hoten from sinhvien where mssv  = ?';
-	connection.query(sql_sv, [mssv], function(err, results){
+	sinhvienDB.getHotenMssv(req.conn, [mssv], function(err, results){
 		if(err) throw err;
 		res.render('sinhvien/muonsach',{
 			username: results[0].hoten
@@ -78,8 +105,7 @@ module.exports.muonsach = function(req, res){
 
 module.exports.lichsu = function(req, res){
 	var mssv = req.cookies.mssv;
-	var sql_sv = 'select hoten from sinhvien where mssv  = ?';
-	connection.query(sql_sv, [mssv], function(err, results){
+	sinhvienDB.getHotenMssv(req.conn, mssv, function(err, results){
 		if(err) throw err;
 		res.render('sinhvien/lichsu', {
 			username: results[0].hoten

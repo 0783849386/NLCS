@@ -1,15 +1,15 @@
 extends ./common
 block header
-	nav.navbar.navbar-expand-lg.navbar-light.bg-light
-		a.navbar-brand(href='/quanli/home') Trang chủ
-		#navbarNav.collapse.navbar-collapse
-			ul.navbar-nav
-				li.nav-item
-					a.nav-link(href='/sach/show') Danh mục sách
-				li.nav-item
-					a.nav-link(href='/quanli/sinhvien') Thành viên
-				li.nav-item
-					a.nav-link(href='/quanli/muonsach') Mượn trả sách
-				li.nav-item
-					a.nav-link(href='/quanli/lichsu') Lịch sử giao dịch
+	.nav-menu
+		ul
+			li#nav-home
+				a.nav-link(href='/quanli/home') Trang chủ
+			li#nav-dms
+				a.nav-link(href='/sach/show') Danh mục sách
+			li#nav-thanhvien
+				a.nav-link(href='/quanli/sinhvien') Thành viên
+			li#nav-muonsach
+				a.nav-link(href='/quanli/muonsach') Cho mượn sách
+			li#nav-lichsu
+				a.nav-link(href='/quanli/lichsu') Lịch sử mượn trả sách
 	block content

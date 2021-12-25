@@ -3,6 +3,7 @@ var edit  = document.querySelectorAll('#editSinhVien');
 let hotenIp = document.getElementById('hoten');
 let emailIp = document.getElementById('email');
 let mssvIp = document.getElementById('mssv');
+let navThanhVien = document.getElementById('nav-thanhvien');
 
 window.onclick = function(event) {
 	if (event.target == modal) {
@@ -29,6 +30,7 @@ function editSach(){
 
 function main(){
 	clickButtonEdit();
+	navThanhVien.style.backgroundColor = '#eee';
 }
 
 main();

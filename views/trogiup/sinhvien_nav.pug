@@ -1,0 +1,29 @@
+extends ./common
+block header
+	.nav-menu
+		ul
+			li#nav-home
+				a.nav-link(href='/sinhvien/home') Trang chủ
+			li#nav-sach
+				a.nav-link(href='/sinhvien/sach') Danh mục sách
+			li#nav-trogiup
+				a.nav-link(href='/trogiup/thutuc') Trợ giúp
+			li#nav-lienhe
+				a.nav-link(href='/sinhvien/lienhe') Liên Hệ
+	
+	.content-footer-trogiup
+		div.sach-content
+			.menu-trogiup
+				ul#menuBar
+					li
+						a.nav.nav-link(href='/trogiup/thutuc') Thủ tục làm thẻ thành viên
+					li
+						a.nav.nav-link(href='/trogiup/muonsach') Quy định khi mượn sách của thư viện
+					li
+						a.nav.nav-link(href='/trogiup/lich') Lịch làm việc của thư viện
+					li
+						a.nav.nav-link(href='/trogiup/quydinh') Những quy định về bảo vệ tài liệu trong thư viện
+					li
+						a.nav.nav-link(href='/trogiup/noiquy') Nội quy thư viện
+			block content
+		.footer-lienhe

@@ -4,6 +4,7 @@ const controller = require('../controllers/sinhvien.controller');
 
 router.get('/home', controller.home);
 router.get('/sach', controller.sach);
+router.get('/lienhe', controller.lienhe);
 router.get('/timkiem/:tensach', controller.timkiem);
 router.get('/muonsach', controller.muonsach);
 router.get('/lichsu', controller.lichsu);
